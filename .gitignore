@@ -1,2 +1,5 @@
 *.pdf
 .gitignore
+*.csv
+*.txt
+MISC
