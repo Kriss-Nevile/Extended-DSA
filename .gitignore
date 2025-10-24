@@ -2,4 +2,5 @@
 .gitignore
 *.csv
 *.txt
+*.pkl
 MISC
