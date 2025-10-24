@@ -1,6 +1,0 @@
-*.pdf
-.gitignore
-*.csv
-*.txt
-Data/embeddings.pkl
-MISC
