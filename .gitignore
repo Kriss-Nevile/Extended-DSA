@@ -2,5 +2,5 @@
 .gitignore
 *.csv
 *.txt
-*.pkl
+Data/embeddings.pkl
 MISC
