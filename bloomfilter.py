@@ -24,7 +24,8 @@ class BloomFilter:
         n_items: expected number of elements to store
         false_positive_rate: acceptable false positive probability (e.g., 0.01)
         """
-        self.m = self._get_size(n_items, false_positive_rate)
+        self.m = self._get_size(n_items, false_positive_rate)  
+        """This is the total number of bits in the bit array"""
         self.k = self._get_hash_count(self.m, n_items)
         self.bit_array = bitarray.bitarray(self.m)
         self.bit_array.setall(0)
