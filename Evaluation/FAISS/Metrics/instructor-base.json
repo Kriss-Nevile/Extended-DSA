@@ -1,0 +1,22 @@
+{
+    "tolerance_1": {
+        "total": 7085,
+        "correct": 4527,
+        "accuracy": 0.638955539872971
+    },
+    "tolerance_3": {
+        "total": 7085,
+        "correct": 5708,
+        "accuracy": 0.8056457304163727
+    },
+    "tolerance_5": {
+        "total": 7085,
+        "correct": 6083,
+        "accuracy": 0.8585744530698659
+    },
+    "tolerance_10": {
+        "total": 7085,
+        "correct": 6455,
+        "accuracy": 0.9110797459421313
+    }
+}
