@@ -18,5 +18,7 @@
         "total": 7085,
         "correct": 6444,
         "accuracy": 0.9095271700776288
-    }
+    },
+    "deduplication_time": 2946,
+    "deduplicated_count": 123565
 }
