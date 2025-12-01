@@ -1,0 +1,26 @@
+
+{
+	"tolerance_1": {
+		"total": 7085,
+		"correct": 4433,
+		"accuracy": 0.6256880733944954
+	},
+	"tolerance_3": {
+		"total": 7085,
+		"correct": 5149,
+		"accuracy": 0.7266760762173606
+	},
+	"tolerance_5": {
+		"total": 7085,
+		"correct": 5865,
+		"accuracy": 0.8276640790402259
+	},
+	"tolerance_10": {
+		"total": 7085,
+		"correct": 6207,
+		"accuracy": 0.876076217360621
+	},
+	"deduplication_time": 3390,
+	"deduplicated_count": 115254,
+	"Peak memory usage": 357.04
+}
