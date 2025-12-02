@@ -486,8 +486,10 @@ def load_model(model_choice: str) -> SentenceTransformer:
     """Load sentence transformer model."""
     if model_choice == "all-MiniLM-L6-v2":
         model_id = "sentence-transformers/all-MiniLM-L6-v2"
-    else:  # bge-base-en-v1.5
+    elif model_choice == "bge-base-en-v1.5":
         model_id = "BAAI/bge-base-en-v1.5"
+    else:  # e5-base-v2
+        model_id = "intfloat/e5-base-v2"
     
     return SentenceTransformer(model_id, device=device)
 
@@ -708,12 +710,19 @@ def search_texts(query: str, top_k: int, progress=gr.Progress()):
     elapsed = (end_time - start_time) * 1000  # ms
     mem_used = max(0, final_mem - initial_mem)
     
-    # Build results
+    # Build results - include unique_id for cluster lookup
+    # Get mapping from unique_texts index to original unique_id
+    unique_ids_list = list(app_state.dedup_mapping.keys())
+    
     result_data = []
     for rank, (doc_id, score) in enumerate(results, 1):
         text = app_state.unique_texts[doc_id]
+        original_unique_id = unique_ids_list[doc_id] if doc_id < len(unique_ids_list) else doc_id
+        group_size = len(app_state.dedup_mapping.get(original_unique_id, []))
         result_data.append({
             'Rank': rank,
+            'Unique ID': original_unique_id,
+            'Group Size': group_size,
             'Score': f"{score:.4f}",
             'Text': text[:200] + '...' if len(text) > 200 else text,
         })
@@ -752,6 +761,34 @@ def export_results():
     return output_path, f"✅ Exported {len(export_data)} unique texts to {output_path}"
 
 
+def view_group_members(unique_id):
+    """View all texts in the same group as the selected unique text."""
+    if not app_state.is_ready:
+        return pd.DataFrame({'Error': ['Please run deduplication first.']})
+    
+    if unique_id is None:
+        return pd.DataFrame({'Error': ['Please enter a Unique ID.']})
+    
+    unique_id = int(unique_id)
+    
+    if unique_id not in app_state.dedup_mapping:
+        return pd.DataFrame({'Error': [f'Unique ID {unique_id} not found. Valid IDs are keys in the deduplication mapping.']})
+    
+    group = app_state.dedup_mapping[unique_id]
+    
+    group_data = []
+    for idx, doc_id in enumerate(group):
+        text = app_state.texts[doc_id]
+        group_data.append({
+            'Position': idx + 1,
+            'Original Index': doc_id,
+            'Is Representative': '✓' if doc_id == unique_id else '',
+            'Text': text,  # Full text - click cell to see wrapped content
+        })
+    
+    return pd.DataFrame(group_data)
+
+
 # =============================================================================
 # Gradio Interface
 # =============================================================================
@@ -772,7 +809,7 @@ def create_interface():
                         file_types=[".xlsx"],
                     )
                     model_dropdown = gr.Dropdown(
-                        choices=["all-MiniLM-L6-v2", "bge-base-en-v1.5"],
+                        choices=["all-MiniLM-L6-v2", "bge-base-en-v1.5", "e5-base-v2"],
                         value="all-MiniLM-L6-v2",
                         label="Embedding Model",
                     )
@@ -793,7 +830,7 @@ def create_interface():
                         label="Deduplication Method",
                     )
                     threshold_slider = gr.Slider(
-                        minimum=0.5,
+                        minimum=0.3,
                         maximum=1.0,
                         value=0.9,
                         step=0.05,
@@ -804,7 +841,14 @@ def create_interface():
                 
                 with gr.Column(scale=2):
                     dedup_status = gr.Markdown("Waiting for deduplication...")
-                    dedup_preview = gr.Dataframe(label="Unique Texts Preview")
+                    dedup_preview = gr.Dataframe(label="Unique Texts Preview (click row to see group)")
+            
+            with gr.Row():
+                with gr.Column(scale=1):
+                    group_id_input = gr.Number(label="Enter Unique ID to view group", precision=0)
+                    view_group_btn = gr.Button("👁 View Group Members")
+                with gr.Column(scale=2):
+                    group_details = gr.Dataframe(label="Group Members (texts grouped with selected unique text)")
             
             export_file = gr.File(label="Download Deduplicated Dataset")
             export_status = gr.Textbox(label="Export Status", interactive=False)
@@ -844,6 +888,12 @@ def create_interface():
             fn=run_deduplication,
             inputs=[method_dropdown, threshold_slider],
             outputs=[dedup_status, dedup_preview, status_2],
+        )
+        
+        view_group_btn.click(
+            fn=view_group_members,
+            inputs=[group_id_input],
+            outputs=[group_details],
         )
         
         export_btn.click(

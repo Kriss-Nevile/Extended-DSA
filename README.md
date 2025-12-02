@@ -265,43 +265,6 @@ min_match_bands = 2   # Minimum bands to match
 
 ---
 
-## 📁 Project Structure
-
-```
-Extended-DSA/
-├── gradio_app.py              # 🌐 Main web application
-├── deduplicate_text.ipynb     # 📓 Jupyter notebook for experiments
-├── minhash_simhash_v4.py      # 🔧 Core hashing implementations
-├── simhash.py                 # SimHash standalone module
-├── minhash.py                 # MinHash standalone module
-├── bloomfilter.py             # Bloom filter implementation
-├── requiresments.txt          # 📦 Python dependencies
-├── HASHING_DOCUMENTATION.md   # 📚 Technical documentation
-├── README.md                  # 📖 This file
-│
-├── Data/                      # 📊 Dataset storage
-│   ├── merged_dataset.csv
-│   ├── *_dataset.xlsx         # Model-specific datasets
-│   └── FAISSINDEX/            # Cached FAISS indexes
-│
-├── Data_extraction/           # 🔄 Data preprocessing
-│   └── Extraction.ipynb
-│
-├── Evaluation/                # 📈 Benchmark results
-│   ├── FAISS/
-│   ├── Minhash/
-│   └── Simhash/
-│
-├── Search/                    # 🔍 Search implementations
-│   ├── FAISSearch.ipynb
-│   └── FAISSearch.py
-│
-└── MISC/                      # 🗂 Miscellaneous utilities
-    └── Data_Inspection.ipynb
-```
-
----
-
 ## 📊 Benchmarks
 
 Performance on sample dataset (~80K texts):
@@ -316,12 +279,6 @@ Performance on sample dataset (~80K texts):
 
 ---
 
-## 📚 Documentation
-
-- **[HASHING_DOCUMENTATION.md](./HASHING_DOCUMENTATION.md)** - Detailed technical explanation of SimHash and MinHash algorithms, LSH banding, and why searches may return fewer results.
-
----
-
 ## 🛠 Development
 
 ### Running Tests
@@ -331,64 +288,3 @@ Performance on sample dataset (~80K texts):
 jupyter notebook deduplicate_text.ipynb
 ```
 
-### Using as a Library
-
-```python
-from gradio_app import (
-    SimHashTechnique,
-    MinHashTechnique,
-    FaissTechnique
-)
-from sentence_transformers import SentenceTransformer
-
-# Load model
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
-
-# Create embeddings
-texts = ["Hello world", "Hi there", "Goodbye world"]
-embeddings = model.encode(texts, convert_to_numpy=True)
-
-# Use SimHash
-simhash = SimHashTechnique(n_bits=256, n_bands=32)
-simhash.fit(embeddings)
-
-# Search
-query_emb = model.encode(["Hello"], convert_to_numpy=True)[0]
-results = simhash.top_k(query_emb, k=5)
-print(results)  # [(doc_id, score), ...]
-```
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- [Sentence Transformers](https://www.sbert.net/) - State-of-the-art sentence embeddings
-- [FAISS](https://github.com/facebookresearch/faiss) - Efficient similarity search
-- [Gradio](https://gradio.app/) - Web interface framework
-- Research papers on SimHash and MinHash for similarity search
-
----
-
-## 📧 Contact
-
-**Kriss Nevile** - [@Kriss-Nevile](https://github.com/Kriss-Nevile)
-
-Project Link: [https://github.com/Kriss-Nevile/Extended-DSA](https://github.com/Kriss-Nevile/Extended-DSA)
