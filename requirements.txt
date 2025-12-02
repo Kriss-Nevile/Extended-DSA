@@ -1,0 +1,12 @@
+pandas
+sentence-transformers
+bitarray
+numpy
+torch
+faiss-cpu
+psutil
+tqdm
+openpyxl
+xlsxwriter
+gradio
+nltk
