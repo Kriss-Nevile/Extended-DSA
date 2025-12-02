@@ -482,15 +482,19 @@ app_state = AppState()
 # Core Functions
 # =============================================================================
 
+# Mapping of model choices to model IDs
+MODEL_ID_MAP = {
+    "all-MiniLM-L6-v2": "sentence-transformers/all-MiniLM-L6-v2",
+    "bge-base-en-v1.5": "BAAI/bge-base-en-v1.5",
+    "e5-base-v2": "intfloat/e5-base-v2",
+}
+
 def load_model(model_choice: str) -> SentenceTransformer:
     """Load sentence transformer model."""
-    if model_choice == "all-MiniLM-L6-v2":
-        model_id = "sentence-transformers/all-MiniLM-L6-v2"
-    elif model_choice == "bge-base-en-v1.5":
-        model_id = "BAAI/bge-base-en-v1.5"
-    else:  # e5-base-v2
-        model_id = "intfloat/e5-base-v2"
-    
+    try:
+        model_id = MODEL_ID_MAP[model_choice]
+    except KeyError:
+        raise ValueError(f"Unknown model_choice: {model_choice}")
     return SentenceTransformer(model_id, device=device)
 
 
