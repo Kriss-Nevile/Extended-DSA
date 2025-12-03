@@ -19,10 +19,17 @@
         "correct": 6408,
         "accuracy": 0.9044460127028935
     },
-    "deduplication_time": 2698.3222839832306,
-    "deduplicated_count": 55943,
-    "threshold": 0.85,
-    "Initial memory usage": 2500.01,
-    "Peak memory usage": 2790.17578125,
-    "Used memory": 290.1657812499998
+    "deduplication_time": 4483.479178905487,
+    "deduplicated_count": 91113,
+    "threshold": 0.9,
+    "Initial memory usage": 1049.62,
+    "Peak memory usage": 2306.43359375,
+    "Used memory": 1256.81359375,
+
+    "deduplication_time1": 2698.3222839832306,
+    "deduplicated_count1": 55943,
+    "threshold1": 0.85,
+    "Initial memory usage1": 2500.01,
+    "Peak memory usage1": 2790.17578125,
+    "Used memory1": 290.1657812499998
 }
