@@ -8,5 +8,6 @@ psutil
 tqdm
 openpyxl
 xlsxwriter
-gradio
+gradio==5.49.1                   
+gradio-client==1.13.3   
 nltk

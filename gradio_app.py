@@ -798,7 +798,7 @@ def view_group_members(unique_id):
 # =============================================================================
 
 def create_interface():
-    with gr.Blocks(title="Text Deduplication & Search", theme=gr.themes.Soft()) as demo:
+    with gr.Blocks(title="Text Deduplication & Search") as demo:
         gr.Markdown("""
         # 🔍 Text Deduplication & Search Tool
         
@@ -923,4 +923,4 @@ if __name__ == "__main__":
     # Ensure clean state on startup
     app_state.reset()
     demo = create_interface()
-    demo.launch(share=True)
+    demo.launch(share=True, theme=gr.themes.Soft())

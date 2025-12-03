@@ -46,6 +46,10 @@ A comprehensive toolkit for **text deduplication** and **semantic similarity sea
   - Export results to Excel
 
 ---
+## ▶️ Try the Web App on Hugging Face Spaces
+🔗 https://huggingface.co/spaces/Namiek/Deduplication
+
+---
 
 ## 🏗 Architecture
 
@@ -278,13 +282,3 @@ Performance on sample dataset (~80K texts):
 *Benchmarks performed on CPU (Intel i7-10th gen), batch_size=256*
 
 ---
-
-## 🛠 Development
-
-### Running Tests
-
-```bash
-# Run the notebook for interactive testing
-jupyter notebook deduplicate_text.ipynb
-```
-
