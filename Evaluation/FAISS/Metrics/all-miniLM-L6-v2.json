@@ -19,6 +19,10 @@
         "correct": 6444,
         "accuracy": 0.9095271700776288
     },
-    "deduplication_time": 2946,
-    "deduplicated_count": 123565
+    "deduplication_time": 2470.2041869163513,
+    "deduplicated_count": 98182,
+    "Initial memory usage": 1375.76,
+    "Peak memory usage": 1483.77734375,
+    "Used memory": 108.01734375000001,
+    "threshold": 0.75
 }
