@@ -1,28 +1,45 @@
+<div align="center">
+
 # 🔍 Extended DSA - Text Deduplication & Semantic Search
 
-A comprehensive toolkit for **text deduplication** and **semantic similarity search** using multiple techniques: **FAISS**, **SimHash**, and **MinHash**. Features a web-based Gradio interface for easy interaction.
+A comprehensive toolkit for **text deduplication** and **semantic similarity search** using multiple techniques: **FAISS**, **SimHash**, and **MinHash**.  
+Features a web-based Gradio interface for easy interaction.
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-orange)
 ![Gradio](https://img.shields.io/badge/Gradio-4.0%2B-yellow)
 
+</div>
 
----
+<div align="center">
 
 ## 📋 Table of Contents
+
+<table>
+<tr>
+<td>
 
 - [Features](#-features)
 - [Architecture](#-architecture)
 - [Installation](#-installation)
 - [Quick Start](#-quick-start)
+
+
+</td>
+<td>
+  
 - [Usage Guide](#-usage-guide)
 - [Technical Details](#-technical-details)
-- [Project Structure](#-project-structure)
 - [Benchmarks](#-benchmarks)
-- [Documentation](#-documentation)
-- [Contributing](#-contributing)
+
+
+</td>
+</tr>
+</table>
+</div>
 
 ---
+
 
 ## ✨ Features
 
@@ -46,6 +63,7 @@ A comprehensive toolkit for **text deduplication** and **semantic similarity sea
   - Export results to Excel
 
 ---
+
 ## ▶️ Try the Web App on Hugging Face Spaces
 🔗 https://huggingface.co/spaces/Namiek/Deduplication
 
