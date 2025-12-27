@@ -297,6 +297,4 @@ Performance on sample dataset (~80K texts):
 | SimHash | 3.5s | 0.8ms | 80MB | ~95% |
 | MinHash | 4.2s | 1.2ms | 90MB | ~92% |
 
-*Benchmarks performed on CPU (Intel i7-10th gen), batch_size=256*
-
 ---
