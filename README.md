@@ -65,6 +65,7 @@ Features a web-based Gradio interface for easy interaction.
 ---
 
 ## ▶️ Try the Web App on Hugging Face Spaces
+(Note that this is will be down from time to time without activity - we will try to keep it's uptime as high as possible)
 🔗 https://huggingface.co/spaces/Namiek/Deduplication
 
 ---
@@ -239,7 +240,6 @@ Click "📤 Export Results" to download the deduplicated dataset as Excel.
 | all-MiniLM-L6-v2 | 384 | 256 | ⚡⚡⚡ Fast | Good |
 | bge-base-en-v1.5 | 768 | 512 | ⚡⚡ Medium | Excellent |
 | e5-base-v2 | 768 | 512 | ⚡⚡ Medium | Excellent |
-| instructor-base | 768 | 512 | ⚡ Slower | Excellent |
 
 ### Search Methods
 
@@ -287,16 +287,3 @@ min_match_bands = 2   # Minimum bands to match
 
 ---
 
-## 📊 Benchmarks
-
-Performance on sample dataset (~80K texts):
-
-| Method | Build Time | Query Time | Memory | Accuracy@10 |
-|--------|------------|------------|--------|-------------|
-| FAISS | 2.1s | 0.5ms | 150MB | 100% |
-| SimHash | 3.5s | 0.8ms | 80MB | ~95% |
-| MinHash | 4.2s | 1.2ms | 90MB | ~92% |
-
-*Benchmarks performed on CPU (Intel i7-10th gen), batch_size=256*
-
----
