@@ -1555,16 +1555,23 @@ def run_deduplication(method: str, threshold: float, progress=gr.Progress()):
             return "❌ FAISS not installed. Run: pip install faiss-cpu", None, ""
         technique = FaissLSHTechnique(n_bits=256)
     elif method == "SimHash":
-        technique = SimHashTechnique(n_bits=256, n_bands=32, min_match_bands=5, max_candidates=500)
+        technique = SimHashTechnique(
+            n_bits=256,
+            n_bands=32,
+            min_match_bands=3,  # Optimal from benchmark
+            max_candidates=500,
+        )
     elif method == "MinHash Embed":
         technique = MinHashEmbedTechnique(n_hashes=256, topk_dims=256, n_bands=64, min_match_bands=2)
     else:  # MinHash Shingle (text-based)
         technique = MinHashShingleTechnique(
+            name="minhash_shingle",
             num_perm=256,
             ngram_size=1,
-            threshold=threshold,
+            threshold=0.45,
             min_band_matches=1,
             use_stopwords=True,
+            stopwords=None,
         )
     
     progress(0.2, desc="Building index...")
