@@ -37,7 +37,7 @@ try:
     import faiss
     print("FAISS đã cài sẵn:", faiss.__version__)
 except ImportError:
-    !pip install -q faiss-cpu
+    # !pip install -q faiss-cpu Not working in pure script
     import faiss
     print("Đã cài faiss-cpu:", faiss.__version__)
 
@@ -1006,25 +1006,25 @@ class MinHashShingleTechnique:
 
 
     # 2) Khởi tạo techniques
-    simhash_tech = SimHashTechnique(
-        n_bits=256,
-        n_bands=32,
-        min_match_bands=3,  # Optimal từ benchmark
-        max_candidates=500,
-    )
+simhash_tech = SimHashTechnique(
+    n_bits=256,
+    n_bands=32,
+    min_match_bands=3,  # Optimal từ benchmark
+    max_candidates=500,
+)
 
-    minhash_tech = MinHashShingleTechnique(
-        name="minhash_shingle",
-        num_perm=256,
-        ngram_size=1,
-        threshold=0.45,
-        min_band_matches=1,
-        use_stopwords=True,
-        stopwords=None,
-    )
+minhash_tech = MinHashShingleTechnique(
+    name="minhash_shingle",
+    num_perm=256,
+    ngram_size=1,
+    threshold=0.45,
+    min_band_matches=1,
+    use_stopwords=True,
+    stopwords=None,
+)
 
 
-    faiss_lsh_tech = FaissLSHTechnique(n_bits=256)
+faiss_lsh_tech = FaissLSHTechnique(n_bits=256)
 
-    # (optional) baseline exact
-    # faiss_exact_tech = FaissExactTechnique()
+# (optional) baseline exact
+# faiss_exact_tech = FaissExactTechnique()
