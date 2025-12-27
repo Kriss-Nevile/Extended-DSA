@@ -287,14 +287,3 @@ min_match_bands = 2   # Minimum bands to match
 
 ---
 
-## 📊 Benchmarks
-
-Performance on sample dataset (~80K texts):
-
-| Method | Build Time | Query Time | Memory | Accuracy@10 |
-|--------|------------|------------|--------|-------------|
-| FAISS | 2.1s | 0.5ms | 150MB | 100% |
-| SimHash | 3.5s | 0.8ms | 80MB | ~95% |
-| MinHash | 4.2s | 1.2ms | 90MB | ~92% |
-
----
