@@ -22,15 +22,15 @@ Features a web-based Gradio interface for easy interaction.
 - [Features](#-features)
 - [Architecture](#-architecture)
 - [Installation](#-installation)
-- [Quick Start](#-quick-start)
+- [Web app](#%EF%B8%8F-try-the-web-app-on-hugging-face-spaces)
 
 
 </td>
 <td>
   
+- [Quick Start](#-quick-start)
 - [Usage Guide](#-usage-guide)
 - [Technical Details](#-technical-details)
-- [Benchmarks](#-benchmarks)
 
 
 </td>
